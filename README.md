@@ -1,57 +1,59 @@
-# Petit Éditeur GLSL
+# Little GLSL Editor
 
-Un éditeur de shaders léger pour Windows, pensé pour écrire, régler et tester en temps réel des effets visuels générés par le GPU — le genre d'effets qu'on trouve sur [Shadertoy](https://www.shadertoy.com/). Compatible avec le code Shadertoy tel quel : pas de syntaxe spéciale à apprendre.
+A lightweight shader editor for Windows, designed for writing, tweaking, and testing real-time GPU-generated visual effects — the kind of effects found on [Shadertoy](https://www.shadertoy.com/). Fully compatible with Shadertoy code out of the box: no special syntax to learn.
 
-**[⬇ Télécharger la dernière version](../../releases/latest)**
+**[⬇ Download Latest Version](../../releases/latest)**
 
-![Aperçu de l'éditeur](docs/screenshot1.png)
+![Editor Preview](docs/screenshot1.png)
 
-![Aperçu de l'éditeur](docs/screenshot2.png)
+![Editor Preview](docs/screenshot2.png)
 
-## Ce que ça permet de faire
+## Features
 
-- **Aperçu en direct** : le rendu se met à jour à chaque frappe, sans bouton "compiler" à cliquer.
-- **Curseurs de réglage automatiques** : chaque valeur numérique de votre code (couleurs, tailles, vitesses…) devient un curseur ajustable à la souris dans un panneau à côté, regroupé par catégorie, avec un bouton "réinitialiser" et un bouton "randomiser" pour explorer rapidement des variantes.
-- **Plusieurs passes de rendu** (Image + Buffers A à D) pour construire des effets en plusieurs étapes qui s'alimentent les uns les autres, comme sur Shadertoy.
-- **Entrées interactives** : la souris (position, clic) et le clavier peuvent piloter votre effet en direct.
-- **Textures** : chargez vos propres images, utilisez des textures générées automatiquement (damier, bruit), ou des images à 360° (cubemap) pour des reflets/environnements.
-- **Glisser-déposer** une image directement sur un emplacement de texture.
-- **Export d'image** : sauvegardez l'image actuellement affichée en PNG.
-- **Projets** : enregistrez votre travail dans un fichier de projet et rouvrez-le plus tard, avec une liste des fichiers récents.
-- **Indicateur de performance** : un petit graphique affiche le temps de calcul de chaque image.
-- **Préférences** : taille de police de l'éditeur, mini-carte, vitesse de mise à jour de l'aperçu.
-- **Réduction de code ("Golf")** : un outil en un clic pour compacter votre shader au minimum d'octets, utile pour les concours de code le plus court possible.
+- **Live Preview**: The rendering updates with every keystroke — no "compile" button to click.
+- **Automatic Sliders**: Every numerical value in your code (colors, sizes, speeds, etc.) automatically becomes a draggable slider in a side panel, grouped by category, complete with a "reset" button and a "randomize" button to rapidly explore variants.
+- **Multi-pass Rendering** (Image + Buffers A through D) to build multi-stage effects that feed into each other, exactly like Shadertoy.
+- **Interactive Inputs**: Mouse (position, click) and keyboard can drive your effect in real time.
+- **Audio & Textures**:
+  - Load your own audio files (`.mp3`, `.wav`, `.ogg`, `.flac`) into an `iChannel` to drive sound-reactive shaders with frequency spectrum and waveform sampling.
+  - Load your own images, use auto-generated textures (checkerboard, noise), or 360° environment images (cubemaps) for reflections.
+- **Drag & Drop**: Drag an image or audio file directly onto a texture slot.
+- **Image Export**: Save the currently displayed frame as a PNG image.
+- **Projects**: Save your work to a project file and reopen it later, with a quick-access recent files list.
+- **Performance Indicator**: A small graph displays the rendering frame time.
+- **Preferences**: Customizable editor font size, minimap visibility, and preview update frequency.
+- **Code Minification ("Golfing")**: A one-click tool to shrink your shader code down to the smallest possible byte count — ideal for code golfing competitions.
 
 ## Installation
 
-1. Cliquez sur **[⬇ Télécharger la dernière version](../../releases/latest)** ci-dessus (ou allez dans l'onglet **Releases** du dépôt).
-2. Téléchargez le programme d'installation (`PetitEditeurGLSL-Setup-x.x.x.exe`), dans la section **Assets** de la release.
-3. Lancez-le et suivez les instructions à l'écran.
-4. Une fois installé, lancez **Petit Éditeur GLSL** depuis le menu Démarrer.
+1. Click on **[⬇ Download Latest Version](../../releases/latest)** above (or go to the **Releases** tab of this repository).
+2. Download the installer (`LittleGLSLEditor-Setup-x.x.x.exe`) from the **Assets** section of the release.
+3. Run the installer and follow the on-screen instructions.
+4. Once installed, launch **Little GLSL Editor** from the Start menu.
 
-> Windows 64 bits requis, avec une carte graphique compatible.
+> Requires 64-bit Windows and a compatible graphics card.
 
-## Prise en main
+## Getting Started
 
-1. Ouvrez l'application : un shader d'exemple s'affiche déjà à l'écran.
-2. Modifiez le code dans l'éditeur à gauche — l'aperçu à droite se met à jour automatiquement.
-3. Repérez le panneau des curseurs : chaque nombre détecté dans votre code y apparaît sous forme de réglage que vous pouvez glisser sans toucher au texte.
-4. Utilisez les onglets **Image / Buffer A / B / C / D / Common** au-dessus de l'éditeur pour construire un effet en plusieurs passes.
-5. Assignez des images, des textures procédurales, une souris ou un clavier à un emplacement `iChannel` via le panneau à droite de l'aperçu.
-6. Une fois satisfait du résultat, utilisez le menu **Fichier** pour enregistrer votre projet, exporter une image PNG, ou exporter le code une fois "golfé" (compacté).
+1. Open the application: an example shader is already loaded and running.
+2. Edit the code in the left panel — the preview on the right updates automatically.
+3. Check out the sliders panel: every number detected in your code appears as a slider you can tweak without editing text directly.
+4. Use the **Image / Buffer A / B / C / D / Common** tabs above the editor to build multi-pass effects.
+5. Assign images, procedural textures, audio files, mouse input, or keyboard input to an `iChannel` slot using the panel to the right of the preview.
+6. Once you are happy with the result, use the **File** menu to save your project, export a PNG screenshot, or export minified ("golfed") code.
 
-### Raccourcis utiles
+### Useful Shortcuts
 
-| Action | Raccourci |
+| Action | Shortcut |
 |---|---|
-| Annuler | Ctrl+Z |
-| Rétablir | Ctrl+Y |
+| Undo | Ctrl+Z |
+| Redo | Ctrl+Y |
 
-## Besoin d'aide ?
+## Need Help?
 
-Une question, un problème, une idée d'amélioration ? Ouvrez une [issue](../../issues) sur ce dépôt.
+Have a question, encountered a bug, or have a feature request? Feel free to open an [issue](../../issues) on this repository.
 
-## Licence
+## License
 
-Petit Éditeur GLSL est **gratuit**, mais son code source n'est pas fourni.
-Voir [LICENSE.md](LICENSE.md) pour le détail de ce qui est autorisé ou non.
+Little GLSL Editor is **free**, but its source code is not provided.  
+See [LICENSE.md](LICENSE.md) for details on allowed and restricted usage.
