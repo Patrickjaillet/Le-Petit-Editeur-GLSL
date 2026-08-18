@@ -1,4 +1,4 @@
-# Le Petit Editeur GLSL
+# Little GLSL Editor
 
 A lightweight shader editor for Windows, designed for writing, tweaking, and testing real-time GPU-generated visual effects — the kind of effects found on [Shadertoy](https://www.shadertoy.com/). Fully compatible with Shadertoy code out of the box: no special syntax to learn.
 
@@ -14,7 +14,7 @@ A lightweight shader editor for Windows, designed for writing, tweaking, and tes
 
 - **Live Preview**: the rendering updates with every keystroke — no "compile" button to click.
 - **Multi-pass Rendering** (Image + Buffers A through D, plus a shared Common tab) to build multi-stage effects that feed into each other, exactly like Shadertoy.
-- **Full Shadertoy compatibility**: paste code from shadertoy.com as-is, no rewriting needed.
+- **Full Shadertoy compatibility**: paste code from shadertoy.com as-is, no rewriting needed. Plain GLSL fragment shaders (their own `void main()`) and WGSL fragment shaders (`@fragment fn ...`) are accepted too, auto-detected with no manual conversion — see the footer indicator (🌈/📄/🟪) for which style was detected.
 - **Import directly from Shadertoy** by pasting a shader's URL or ID — the shader, its buffers, and its textures are fetched and loaded automatically. (Requires a free Shadertoy API key, entered once and remembered for future imports.)
 
 ### 🎚️ Automatic Sliders
