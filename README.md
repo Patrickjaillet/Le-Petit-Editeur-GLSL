@@ -1,4 +1,4 @@
-# Little GLSL Editor
+# Le Petit Editeur GLSL
 
 A lightweight shader editor for Windows, designed for writing, tweaking, and testing real-time GPU-generated visual effects — the kind of effects found on [Shadertoy](https://www.shadertoy.com/). Fully compatible with Shadertoy code out of the box: no special syntax to learn.
 
