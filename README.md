@@ -124,5 +124,5 @@ See [CHANGELOG.md](CHANGELOG.md) for a plain-language history of what changed in
 
 ## License
 
-Little GLSL Editor is **free**, but its source code is not provided.
+Le Petit Editeur GLSL is **free**, but its source code is not provided.
 See [LICENSE.md](LICENSE.md) for details on allowed and restricted usage.
