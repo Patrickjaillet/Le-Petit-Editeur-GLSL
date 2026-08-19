@@ -2,6 +2,14 @@
 
 This changelog summarizes, in plain language, what changes from version to version of **Little GLSL Editor**. It is intended for people who use the software — for the technical details of each feature, see `ROADMAP.md`.
 
+## Version 0.1.16 — August 19, 2026
+
+### New
+
+- **A music track can now be added to an exported video (MP4).** *File → Export a video (MP4)…* gains a "Music" section: pick an audio file (.mp3/.wav/.ogg/.flac) and it gets mixed into the exported video as its audio track. Four options tune it: **volume** (a simple gain in dB), **start point** (skip the track's intro so the export starts on the chorus/drop instead of second 0), **loop** (on by default — a track shorter than the video repeats seamlessly to cover it; turned off, the rest of the export just plays silent instead), and **audio quality** (128/192/320 kbps). The video's own length is never affected by the music either way. The headless `--export-mp4` command-line export gained matching `--audio`/`--audio-volume`/`--audio-start`/`--audio-loop`/`--audio-bitrate` options.
+- **New visual theme across the whole interface**, with a modern "glass" look: translucent, rounded, softly-bordered panels, menus and buttons, plus redesigned sliders — a slimmer track with a colored fill showing the current position at a glance, and a rounder, easier-to-grab handle that highlights on hover.
+- **A "Dé-golf" button now sits next to the "Golf" button**, both in the toolbar and the *Edit* menu. It reformats the current tab's code — proper indentation, one instruction per line, spaced-out operators — making a golfed (or just messily pasted) shader readable again, without renaming anything or changing what it compiles to. As with Golf, if the reformatted code somehow failed to compile, nothing would be changed in the editor.
+
 ## Version 0.1.15 — August 18, 2026
 
 ### New

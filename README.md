@@ -34,6 +34,7 @@ A lightweight shader editor for Windows, designed for writing, tweaking, and tes
 - 360° environment images (**cubemaps**, 6 faces) for reflections.
 - Mouse (position, click) and keyboard input can drive your effect in real time.
 - **Drag & Drop** an image, video, or audio file directly onto a texture slot.
+- Every iChannel picker (image, video, audio, cubemap faces) opens straight into its own organized folder under `Documents\Petit Editeur GLSL\iChannels\` — no hunting through folders.
 
 ### 🏌️ Code Golfing (minification)
 
@@ -42,18 +43,21 @@ A lightweight shader editor for Windows, designed for writing, tweaking, and tes
 - Can golf a single pass or the whole project (every pass + Common) at once.
 - **Safety net**: if a golf pass would break compilation, it's automatically cancelled and your code is left untouched.
 - **Undo the golf** at any time to get your readable code back.
+- **Dé-golf**: a button right next to Golf reformats any code — golfed or just messily pasted — back into readable, indented, properly-spaced code, without renaming anything or changing what it compiles to.
 - Live size readout in the status bar (raw bytes and estimated compressed size), with the traditional 2 KB / 4 KB / 8 KB demoscene thresholds highlighted.
 
 ### 📤 Export & Projects
 
 - **Export a still frame** as a PNG image.
-- **Export a video** as an `.mp4` file, with full control over duration, frame rate, output resolution, and compression (quality presets or an exact value), plus a file-size estimate before you export.
+- **Export a video** as an `.mp4` file, with full control over duration, frame rate, output resolution, and compression (quality presets or an exact value), plus a file-size estimate before you export. Optionally mix in a **music track** (`.mp3`/`.wav`/`.ogg`/`.flac`) with adjustable volume, start point, looping, and audio quality.
 - **Export golfed (minified) shader code** as a standalone `.frag`/`.glsl` file.
 - **Export the currently displayed pass as HLSL or Metal (MSL)**, for pasting into a game engine or a native app targeting DirectX/Unity/Unreal (HLSL) or Metal (MSL). This is a one-time, faithful translation of the shader as compiled at export time — not a round-trip format: the exported file can't be pasted back into this editor to keep editing it here (HLSL/MSL are export-only targets, never input dialects). Custom `iChannel`/uniform bindings translate to `Texture2D`/`SamplerState` (HLSL) or `texture2d<float>`/`sampler` (MSL) using generic binding conventions that may need manual adjustment for the target engine. This export always translates whichever GLSL/WGSL source is currently compiled — golfed or not, your choice — as-is; golfing is a text-level GLSL minifier and is never applied (again) as part of this translation. There is no guarantee that recompiling the exported file in a third-party engine will render pixel-for-pixel identically to this software's own live preview — worth checking case by case in your target engine.
 - **Save and reopen full projects** (all passes, textures, and slider setups) as a single file, with a quick-access recent files list.
+- **Every save/export dialog opens straight into its own organized folder** under `Documents\Petit Editeur GLSL\` (`Projects\`, `Shaders\`, `Videos\`, `Images\`, `Exports\`) — no more hunting for where you last saved something.
 
 ### 🌍 Interface
 
+- **Modern "glass" visual theme**: translucent, rounded, softly-bordered panels, menus and buttons, plus redesigned sliders with a colored fill and a rounder, easier-to-grab handle.
 - Available in **12 languages**: English, Français, Deutsch, Español, Italiano, Português, 日本語, 한국어, 简体中文, हिन्दी, Norsk, Svenska — switchable anytime from *File → Preferences*.
 - **Fully customizable keyboard shortcuts** for every command (see below), with live duplicate-binding detection and one-click reset.
 - **Performance indicator**: a small graph displays the rendering frame time.
@@ -104,7 +108,7 @@ PetitEditeurGLSL.exe --golf shader.frag shader.min.frag [--no-rename] [--no-dead
 Golfs a single shader file without opening the app.
 
 ```
-PetitEditeurGLSL.exe --export-mp4 project.json output.mp4 --duration 10 --fps 30 --crf 23 [--width 1920 --height 1080]
+PetitEditeurGLSL.exe --export-mp4 project.json output.mp4 --duration 10 --fps 30 --crf 23 [--width 1920 --height 1080] [--audio music.mp3 [--audio-volume 0] [--audio-start 0] [--audio-loop 1] [--audio-bitrate 192]]
 ```
 Renders a saved project straight to an `.mp4` file without opening the app — handy for batch-generating preview videos for a whole folder of shaders.
 
