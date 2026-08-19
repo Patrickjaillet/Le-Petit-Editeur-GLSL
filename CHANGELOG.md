@@ -2,6 +2,44 @@
 
 This changelog summarizes, in plain language, what changes from version to version of **Little GLSL Editor**. It is intended for people who use the software — for the technical details of each feature, see `ROADMAP.md`.
 
+## Version 0.1.18 — August 19, 2026
+
+### Fixed
+
+- **A hexadecimal integer literal in a shader's code (e.g. `0x1F`) could be turned into a broken slider.** Dragging it would corrupt the surrounding source text (e.g. `0x1F` becoming `5x1F`, no longer valid code). Hexadecimal literals are no longer picked up as sliders at all.
+- **A very first assignment to any `iChannel` — made before ever switching between the Image/Buffer A-D tabs — could silently attach to the wrong pass** (Buffer A instead of the pass actually shown). No error, nothing visibly wrong on screen; fixed so the textures panel is correctly synced with the displayed pass from the moment the window opens.
+- **Scrolling the mouse wheel or using the keyboard arrows directly on an integer slider's track could do nothing for many notches in a row** (for a typical range, up to ~30 notches before the first visible change) — the value did move on the paired spin box just fine, only the slider track itself felt unresponsive. Both now respond identically, one unit per notch.
+- **A shader with several dozen sliders simultaneously animated by keyframes could visibly stutter while playing**, occasionally dropping an entire frame's worth of time (measured up to ~43ms) just updating the sliders panel, before the next frame had even started rendering. Reworked so this never exceeds about 10ms even in that scenario.
+- **An emptied pass tab (a Buffer nobody's using anymore) kept its last-compiled shader silently running and rendering every frame in the background**, costing GPU time for nothing. Clearing a tab's code now actually tears down its render pipeline.
+- **`.bmp`, `.gif`, and `.webp` image files could be selected in an `iChannel` picker but failed to load** — the software's own file filters advertised `.bmp` support that wasn't actually there. All three now load correctly.
+
+### New
+
+- **A per-slider interpolation curve for keyframe animation**: choose Linear, Smooth (ease), or Stepped from the keyframe menu, with a live graph showing the actual curve shape as you pick.
+- **Adjustable preview resolution**, independent of the window size: a new control in the status bar renders the live preview at 100/75/50/25% to keep things smooth on a heavy shader, always showing the resolution actually in use.
+- **Audio `iChannel` volume and mute**, adjustable right from the textures panel, independent of the system volume — saved with the project.
+- **Procedural textures (checkerboard, white noise, value noise) now have adjustable pattern size and random seed**, instead of fixed built-in values.
+- **Cubemap assignment now shows a 6-face preview thumbnail** (not just one face), and checks every face's file and dimensions *before* closing the dialog — a missing file or a mismatched face size is caught immediately, naming exactly which face and why.
+- **Video, webcam, and audio `iChannel` slots now show a live thumbnail** of their actual content (a real decoded frame, or a waveform sparkline) instead of a generic icon.
+- **Dropping an unsupported file onto a texture slot now explains why it was refused**, naming the file extension, instead of silently doing nothing.
+
+## Version 0.1.17 — August 19, 2026
+
+### Fixed
+
+- **Audio and video files assigned to an `iChannel` could silently fail to load.** A file path containing a drive letter (e.g. `C:\Music\track.mp3` — every Windows path) could be misread as a web address instead of a local file, depending on exactly how it was typed/browsed to. When it happened, the file simply never played: no error dialog, just silence — meaning a shader written to react to music could receive no audio data at all, no matter how correctly it was written. Now fixed for both audio and video file assignments.
+- **A shader that compiled and rendered correctly on shadertoy.com could fail to compile here** with a cryptic internal error, on one specific (if uncommon) pattern: a `mat2`/`mat3`/`mat4` built from more values than it actually needs (e.g. `mat2(z, -z.y, z)`, a compact way to write a rotation matrix from an existing vector) — legal GLSL, but not something this software's shader compiler could parse. Such shaders now compile correctly.
+
+### New
+
+- **Every save/export dialog (project, shader, PNG, MP4, golfed code, HLSL/MSL) now opens directly into its own tidy folder** under `Documents\Petit Editeur GLSL\` — no more hunting through folders for where something was last saved. The same applies to every iChannel file picker (image, video, audio, cubemap faces), each with its own folder under `iChannels\`.
+- **Every save/export now ends with a confirmation showing exactly where the file was written, with a button to open that folder directly.**
+- **Golfing the whole project now shows a size breakdown per pass** (before/after bytes for each of Image, Buffer A-D, and Common), not just one combined total.
+- **The 2 KB / 4 KB / 8 KB demoscene size milestones in the status bar are now color- and icon-coded** (🥇/🥈/🥉), plus a new warning marker when a shader is just above a milestone rather than under it — easier to read at a glance.
+- **A conflicting keyboard shortcut is now flagged immediately**, as soon as it's typed, naming the command it collides with — instead of only when clicking Ok.
+- **Opening a project saved by a newer version of the software now shows a clear warning** instead of loading silently with possibly-missing settings.
+- The HLSL/MSL export warning about custom texture/uniform bindings has been reworded in plain language in all 12 languages, dropping HLSL/MSL-specific jargon that only made sense to someone who already knew those languages.
+
 ## Version 0.1.16 — August 19, 2026
 
 ### New
